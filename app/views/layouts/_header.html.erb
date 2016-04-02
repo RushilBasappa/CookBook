@@ -1,0 +1,16 @@
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+    <%= link_to "CookBook","", id:"logo",class:"navbar-header" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home",root_path%> </li>
+        <li><%= link_to "Recipes",""%> </li>
+        <% if chef_signed_in? %>
+          <li><%= link_to "Log out",destroy_chef_session_path, method: :delete%> </li>
+        <% else %>
+          <li><%= link_to "Log in",new_chef_session_path%> </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</div>
