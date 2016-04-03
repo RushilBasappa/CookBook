@@ -1,11 +1,13 @@
 <div class="container">
-      <h1 align="center"><%= @recipe.name.capitalize %></h1>
-      <hr/>
+  <h1 align="center"><%= @recipe.name.capitalize %></h1>
+  <hr/>
   <div class="row">
 
     <div class="col-md-10">
       <h3 style="font-weight: bold; word-wrap: break-word;"><%= @recipe.summary.capitalize %></h3>
-      <div class="well " style="word-wrap: break-word;">
+      <hr/>
+      <%= image_tag(@recipe.picture.url, size: "400x200", class: "gravata") if @recipe.picture? %>
+      <div class=" well " style="word-wrap: break-word;">
         <p><strong>Steps:</strong></p>
         <%= simple_format(@recipe.procedure) %>
       </div>
@@ -15,6 +17,6 @@
       <h4><%= link_to @recipe.chef.chefname,"" %></h4>
     </div>
   </div>
-<%= link_to "Return to recipes",recipes_path, class:"btn btn-primary btn-lg" %>
+  <%= link_to "Return to recipes",recipes_path, class:"btn btn-primary btn-lg" %>
 </div>
 
