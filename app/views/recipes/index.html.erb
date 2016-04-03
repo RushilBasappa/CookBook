@@ -1,0 +1,16 @@
+<h1 align="center">All Recipes</h1>
+<% @recipes.each do |recipe|%>
+  <div class="row">
+    <div class="container">
+      <hr/>
+      <div class="col-md-2">
+        <%= gravatar_for(recipe.chef,120) %>
+      </div>
+      <div class="col-md-10 well">
+        <h4><%= link_to recipe.name.capitalize,recipe_path(recipe.id) %></h4>
+        <p><%= recipe.summary %></p>
+        <small><%= time_ago_in_words(recipe.created_at) %> ago</small>
+      </div>
+    </div>
+  </div>
+<% end %>
