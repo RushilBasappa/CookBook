@@ -1,16 +1,19 @@
 class RecipesController < ApplicationController
   before_action :require_permission, :except => [:index, :show]
+  before_action :load_recipe, only: [:show, :edit, :update]
 
   def index
-    if params[:search]
-      @recipes = Recipe.where('name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ?',"#{params[:search]}","#{params[:search]} %","% #{params[:search]} %","% #{params[:search]}")
+    if params[:search].present?
+      @recipes = Recipe.search(params[:search])
     else
       @recipes = Recipe.all
     end
   end
+
   def new
     @recipe = Recipe.new
   end
+
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.chef_id = current_chef.id
@@ -22,16 +25,14 @@ class RecipesController < ApplicationController
       render 'new'
     end
   end
+
   def show
-    @recipe = Recipe.find(params[:id])
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
       flash[:success] = "Recipe Updated"
       redirect_to recipe_path(@recipe)
@@ -44,9 +45,7 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:name, :summary,:ingredients, :procedure, :picture)
   end
 
-  def require_permission
-    if !chef_signed_in?
-      redirect_to root_path
-    end
+  def load_recipe
+    @recipe = Recipe.find(params[:id])
   end
 end

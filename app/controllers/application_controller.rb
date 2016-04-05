@@ -6,4 +6,11 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     recipes_path
   end
+
+  private
+  def require_permission
+    if !chef_signed_in?
+      redirect_to root_path
+    end
+  end
 end
