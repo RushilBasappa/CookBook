@@ -2,7 +2,12 @@
 <hr/>
 <div class="row">
   <div class="col-md-10">
-    <h3 style="font-weight: bold; word-wrap: break-word;"><%= @recipe.summary.capitalize %><span class="pull-right"><%= link_to "Edit Recipe",edit_recipe_path,class:"btn btn-warning" %></span></h3>
+    <h3 style="font-weight: bold; word-wrap: break-word;">
+      <%= @recipe.summary.capitalize %>
+      <span class="pull-right">
+        <%= link_to "Edit Recipe",edit_recipe_path,class:"btn btn-warning" %>
+      </span>
+    </h3>
     <%= image_tag(@recipe.picture.url, size: "400x200", class: "gravatar") if @recipe.picture? %>
     <div class=" well " style="word-wrap: break-word;">
       <p><strong>Steps:</strong></p>

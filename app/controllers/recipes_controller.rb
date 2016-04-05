@@ -2,7 +2,11 @@ class RecipesController < ApplicationController
   before_action :require_permission, :except => [:index, :show]
 
   def index
-    @recipes = Recipe.all
+    if params[:search]
+      @recipes = Recipe.where('name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ?',"#{params[:search]}","#{params[:search]} %","% #{params[:search]} %","% #{params[:search]}")
+    else
+      @recipes = Recipe.all
+    end
   end
   def new
     @recipe = Recipe.new
