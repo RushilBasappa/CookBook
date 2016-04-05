@@ -1,19 +1,20 @@
 <h1 align="center">All Recipes</h1>
+<hr/>
 <% @recipes.each do |recipe|%>
   <div class="row">
-    <div class="container">
-      <hr/>
+    <div class="container-fluid">
       <div class="col-md-2">
         <%= gravatar_for(recipe.chef,120) %>
       </div>
-      <div class="col-md-6 well">
+      <div class="col-md-7 well">
         <h4><%= link_to recipe.name.capitalize,recipe_path(recipe.id) %></h4>
         <p><%= recipe.summary %></p>
         <small><%= time_ago_in_words(recipe.created_at) %> ago</small>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <%= image_tag(recipe.picture.url, size:"250x150",class: "gravatar") if recipe.picture? %>
       </div>
     </div>
+    <hr/>
   </div>
 <% end %>

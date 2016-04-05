@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160403150235) do
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
     t.string   "summary"
+    t.text     "ingredients"
     t.text     "procedure"
     t.integer  "chef_id"
     t.datetime "created_at"

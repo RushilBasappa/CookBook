@@ -1,22 +1,17 @@
-<div class="container">
-  <h1 align="center"><%= @recipe.name.capitalize %></h1>
-  <hr/>
-  <div class="row">
-
-    <div class="col-md-10">
-      <h3 style="font-weight: bold; word-wrap: break-word;"><%= @recipe.summary.capitalize %></h3>
-      <hr/>
-      <%= image_tag(@recipe.picture.url, size: "400x200", class: "gravata") if @recipe.picture? %>
-      <div class=" well " style="word-wrap: break-word;">
-        <p><strong>Steps:</strong></p>
-        <%= simple_format(@recipe.procedure) %>
-      </div>
-    </div>
-    <div class="col-md-2 center">
-      <%= gravatar_for @recipe.chef,150 %>
-      <h4><%= link_to @recipe.chef.chefname,"" %></h4>
+<h1 align="center"><%= @recipe.name.capitalize %></h1>
+<hr/>
+<div class="row">
+  <div class="col-md-10">
+    <h3 style="font-weight: bold; word-wrap: break-word;"><%= @recipe.summary.capitalize %><span class="pull-right"><%= link_to "Edit Recipe",edit_recipe_path,class:"btn btn-warning" %></span></h3>
+    <%= image_tag(@recipe.picture.url, size: "400x200", class: "gravatar") if @recipe.picture? %>
+    <div class=" well " style="word-wrap: break-word;">
+      <p><strong>Steps:</strong></p>
+      <%= simple_format(@recipe.procedure) %>
     </div>
   </div>
-  <%= link_to "Return to recipes",recipes_path, class:"btn btn-primary btn-lg" %>
+  <div class="col-md-2 center">
+    <%= gravatar_for @recipe.chef,150 %>
+    <h4><%= link_to @recipe.chef.chefname,"" %></h4>
+  </div>
 </div>
-
+<%= link_to "Return to recipes",recipes_path, class:"btn btn-primary btn-lg" %>

@@ -8,4 +8,18 @@ body{
 h1,.center{
   text-align: center;
 }
-
+#logo{
+  float:left;
+  font-size:30px;
+  text-decoration: none;
+  color:grey;
+  font-weight:bold;
+  padding:3px 0;
+  &:hover{
+    color:white;
+  }
+}
+hr{
+  margin-top:0px;
+  margin-bottom:r340px;
+}

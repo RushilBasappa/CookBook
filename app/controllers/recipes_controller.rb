@@ -1,6 +1,5 @@
 class RecipesController < ApplicationController
-
-  before_action :require_permission
+  before_action :require_permission, :except => [:index, :show]
 
   def index
     @recipes = Recipe.all
@@ -23,10 +22,22 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params)
+      flash[:success] = "Recipe Updated"
+      redirect_to recipe_path(@recipe)
+    end
+  end
+
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :summary, :procedure, :picture)
+    params.require(:recipe).permit(:name, :summary,:ingredients, :procedure, :picture)
   end
 
   def require_permission
