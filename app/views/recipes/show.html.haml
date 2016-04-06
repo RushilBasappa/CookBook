@@ -1,6 +1,9 @@
 %h1{:align => "center"}= @recipe.name.capitalize
 %hr/
 .row
+  .col-md-2.center
+    = gravatar_for @recipe.chef,150
+    %h4= link_to @recipe.chef.chefname,""
   .col-md-10
     %h3{:style => "font-weight: bold; word-wrap: break-word;"}
       = @recipe.summary.capitalize
@@ -13,7 +16,35 @@
       %p
         %strong Steps:
       = simple_format(@recipe.procedure)
-  .col-md-2.center
-    = gravatar_for @recipe.chef,150
-    %h4= link_to @recipe.chef.chefname,""
+    .col-md-8
+      %h3 Reviews for #{@recipe.name}
+      -if @review.blank?
+        %p No reviews yet...
+      -else
+        -@review.each do |review|
+          .row
+            .col-md-3
+              <div class="star-rating" data-score= #{review.rating}></div>
+              %p{:style => "margin:0"}
+                %small
+                  =Chef.find(review.chef_id).chefname
+              %p
+                %small
+                  =time_ago_in_words(review.created_at)
+            .col-md-9
+              %p{:style => "word-wrap: break-word"}
+                =review.comment
+          %hr/
+    .col-md-4
+      =render 'reviews/form'
 = link_to "Return to recipes",recipes_path, class:"btn btn-primary btn-lg"
+
+
+:javascript
+  $('.star-rating').raty({
+        path: '/assets',
+        readOnly: true,
+        score: function(){
+            return $(this).attr('data-score');
+        }
+  });

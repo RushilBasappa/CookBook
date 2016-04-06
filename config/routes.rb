@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :chefs,:controllers => {registrations: 'registrations'}
   root 'welcome#home'
 
+  get '/chefs/:id', to: 'chefs#show', as: :chef_profile
+
   get '/recipes', to: 'recipes#index', as: :recipes
   post '/recipes', to: 'recipes#create'
   get '/recipes/new' ,to: 'recipes#new', as: :new_recipe
@@ -10,5 +12,6 @@ Rails.application.routes.draw do
   patch '/recipes/:id', to: 'recipes#update'
   delete '/recipes/:id', to: 'recipes#destroy', as: :delete_recipe
 
-  get '/recipes/:recipe_id/review/new', to: 'reviews#new', as: :new_review
+  post '/recipes/:recipe_id/reviews', to: 'reviews#create', as: :recipe_reviews
+  get '/recipes/:recipe_id/reviews', to: 'reviews#index', as: :reviews
 end

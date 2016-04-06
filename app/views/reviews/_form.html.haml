@@ -1,0 +1,15 @@
+= form_for [@recipe,@review_new] do |f|
+  .field
+    =f.label "New Review"
+  .field
+    #star-rating
+  .field
+    = f.text_area :comment
+  = f.submit 'Submit',class: "btn btn-primary"
+
+
+:javascript
+  $('#star-rating').raty({
+      path:'/assets/',
+      scoreName: 'review[rating]'
+  });

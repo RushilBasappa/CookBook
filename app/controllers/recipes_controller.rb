@@ -26,6 +26,8 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @review = Review.where(recipe_id: @recipe.id).order("created_at DESC")
+    @review_new = Review.new
   end
 
   def edit
