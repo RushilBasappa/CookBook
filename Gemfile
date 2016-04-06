@@ -16,6 +16,7 @@ gem 'carrierwave', '0.11.0'
 gem 'mini_magick', '4.4.0'
 gem "erb2haml", :group => :development
 gem 'haml-rails', '~> 0.9.0'
+gem "jquery-ui-rails"
 
 group :development, :test do
   gem 'byebug'

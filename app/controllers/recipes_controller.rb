@@ -3,10 +3,9 @@ class RecipesController < ApplicationController
   before_action :load_recipe, only: [:show, :edit, :update]
 
   def index
+    @recipes = Recipe.published_recipes()
     if params[:search].present?
-      @recipes = Recipe.search(params[:search])
-    else
-      @recipes = Recipe.all
+      @recipes = @recipes.search(params[:search])
     end
   end
 
@@ -39,9 +38,19 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy
+    byebug
+    Recipe.find(params[:id]).destroy
+    flash[:success] = "Recipe deleted"
+    redirect_to recipes_path
+  end
+
   private
 
   def recipe_params
+    if params[:commit] == "Publish Recipe"
+      @recipe.published = true
+    end
     params.require(:recipe).permit(:name, :summary,:ingredients, :procedure, :picture)
   end
 

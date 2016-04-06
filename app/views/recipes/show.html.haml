@@ -7,6 +7,7 @@
       -if current_chef == @recipe.chef
         %span.pull-right
           = link_to "Edit Recipe",edit_recipe_path,class:"btn btn-warning"
+          = link_to "Delete Recipe",@recipe, method: :delete ,class:"btn btn-warning",data: {confirm: "You sure?"}
     = image_tag(@recipe.picture.url, size: "400x200", class: "gravatar") if @recipe.picture?
     .well{:style => "word-wrap: break-word;"}
       %p

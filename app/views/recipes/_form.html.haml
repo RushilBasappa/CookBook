@@ -4,16 +4,18 @@
       = form_for(@recipe, :html => {multipart: true, :class => "form-horizontal"}) do |f|
         .form-group
           = f.label :name
-          = f.text_field :name, class:"form-control"
+          = f.text_field :name, class:"form-control", :autocomplete => 'off'
         .form-group
           = f.label :summary
-          = f.text_field :summary, class:"form-control"
+          = f.text_field :summary, class:"form-control", :autocomplete => 'off'
         .form-group
           = f.label :ingredients
-          = f.text_area :ingredients, class:"form-control" ,rows: 3
+          = f.text_area :ingredients, class:"form-control" ,rows: 2, :autocomplete => 'off'
         .form-group
           = f.label :procedure
-          = f.text_area :procedure, class:"form-control" ,rows: 10
+          = f.text_area :procedure, class:"form-control" ,rows: 6, :autocomplete => 'off'
         .form-group
           = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
-        = f.submit "Create Recipe", class:"btn btn-primary", style:"width:100%"
+        = f.submit "Save Recipe", class:"btn btn-primary"
+        -if @recipe.published != true
+          = f.submit "Publish Recipe", class:"btn btn-primary"
