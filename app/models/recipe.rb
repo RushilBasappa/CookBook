@@ -16,11 +16,11 @@ class Recipe < ActiveRecord::Base
           "% #{search_term}")
   end
 
-  def self.display()
-    published_recipes().order(:name).map(&:name)
+  def self.display
+    published_recipes.order(:name).map(&:name)
   end
 
-  def self.published_recipes()
-    where(published: true)
+  def self.published_recipes
+    where published: true
   end
 end
