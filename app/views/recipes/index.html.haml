@@ -1,0 +1,26 @@
+%h1{:align => "center"} All Recipes
+%hr/
+= form_tag recipes_path, :method => 'get' do
+  .container
+    .row
+      .col-md-6.col-md-offset-3
+        #custom-search-input
+          .input-group.col-md-12
+            = text_field_tag :search, params[:search],class:"form-control input-lg",placeholder:"Search"
+            %span.input-group-btn
+              %button.btn.btn-info.btn-lg{:type => "submit"}
+                %i.glyphicon.glyphicon-search
+-@recipes.each do |recipe|
+  .row
+    .container-fluid
+      .col-md-2
+        = gravatar_for(recipe.chef,120)
+      .col-md-7.well
+        %h4= link_to recipe.name.capitalize,recipe_path(recipe.id)
+        %p= recipe.summary
+        %small
+          = time_ago_in_words(recipe.created_at)
+          ago
+      .col-md-3
+        = image_tag(recipe.picture.url, size:"250x150",class: "gravatar") if recipe.picture?
+    %hr/

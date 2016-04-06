@@ -1,0 +1,18 @@
+.navbar.navbar-fixed-top.navbar-inverse
+  .container-fluid
+    -if chef_signed_in?
+      = link_to "CookBook",recipes_path, id:"logo"
+    -else
+      = link_to "CookBook",root_path, id:"logo"
+    %nav
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to "Home",root_path
+        %li
+          = link_to "Recipes",recipes_path
+        - if chef_signed_in?
+          %li
+            = link_to "Log out",destroy_chef_session_path, method: :delete
+        - else
+          %li
+            = link_to "Log in",new_chef_session_path

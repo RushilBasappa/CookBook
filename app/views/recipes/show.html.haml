@@ -1,0 +1,18 @@
+%h1{:align => "center"}= @recipe.name.capitalize
+%hr/
+.row
+  .col-md-10
+    %h3{:style => "font-weight: bold; word-wrap: break-word;"}
+      = @recipe.summary.capitalize
+      -if current_chef == @recipe.chef
+        %span.pull-right
+          = link_to "Edit Recipe",edit_recipe_path,class:"btn btn-warning"
+    = image_tag(@recipe.picture.url, size: "400x200", class: "gravatar") if @recipe.picture?
+    .well{:style => "word-wrap: break-word;"}
+      %p
+        %strong Steps:
+      = simple_format(@recipe.procedure)
+  .col-md-2.center
+    = gravatar_for @recipe.chef,150
+    %h4= link_to @recipe.chef.chefname,""
+= link_to "Return to recipes",recipes_path, class:"btn btn-primary btn-lg"

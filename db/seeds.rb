@@ -1,15 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-user = Chef.where(email:"rushil@gmail.com").first_or_create(chefname: "Rushil",
-                   email: "rushil@gmail.com",
-                   password: "12345678",
-                   password_confirmation: "12345678")
+Chef.where(email:"rushirocks2212@gmail.com").first_or_create(chefname: "Rushil",
+                                                             email: "rushirocks2212@gmail.com",
+                                                             password: "12345678",
+                                                             password_confirmation: "12345678")
 
 
 Recipe.create!(
@@ -32,5 +24,5 @@ Recipe.create!(
    3. the potatoes should be mashed very well. there should be no lumps or small pieces in it.
    4. now add the chopped green chilies, garam masala powder, red chili powder, dry mango powder and salt.
    5. mix the spice powders and green chilies with the mashed potatoes very well. check the taste and add more salt or red chili powder or dry mango powder as per your taste. you can also add 2 to 3 tsp of chopped coriander leaves. a variation is to add finely chopped onions, if you like. but the onions have to be finely chopped. otherwise they came out when rolling the parathas. keep prepared aloo stuffing aside. ",
-  chef_id:1
+   chef_id:1
 )

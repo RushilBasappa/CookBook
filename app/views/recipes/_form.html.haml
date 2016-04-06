@@ -1,0 +1,19 @@
+.col-md-8.col-md-offset-2
+  .row.well
+    .container-fluid
+      = form_for(@recipe, :html => {multipart: true, :class => "form-horizontal"}) do |f|
+        .form-group
+          = f.label :name
+          = f.text_field :name, class:"form-control"
+        .form-group
+          = f.label :summary
+          = f.text_field :summary, class:"form-control"
+        .form-group
+          = f.label :ingredients
+          = f.text_area :ingredients, class:"form-control" ,rows: 3
+        .form-group
+          = f.label :procedure
+          = f.text_area :procedure, class:"form-control" ,rows: 10
+        .form-group
+          = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
+        = f.submit "Create Recipe", class:"btn btn-primary", style:"width:100%"
