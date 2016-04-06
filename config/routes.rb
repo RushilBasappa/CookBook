@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get '/recipes/:id/edit', to: 'recipes#edit', as: :edit_recipe
   patch '/recipes/:id', to: 'recipes#update'
   delete '/recipes/:id', to: 'recipes#destroy', as: :delete_recipe
+
+  get '/recipes/:recipe_id/review/new', to: 'reviews#new', as: :new_review
 end
