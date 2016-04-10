@@ -4,21 +4,21 @@ Chef.where(email:"rushirocks2212@gmail.com").first_or_create(chefname: "Rushil",
                                                              password_confirmation: "12345678")
 
 
-Recipe.create!(
+Recipe.where(name: "Maggi").first_or_create(
   name: "Maggi",
   summary: "Delicious Food",
   procedure:"1. Boil maggi noodles for 2 mins\r\n2. add maggi masala\r\n3. serve",
   chef_id:1,
   published: true
 )
-Recipe.create!(
+Recipe.where(name: "Egg Maggie").first_or_create(
   name: "Egg Maggie",
   summary: "Delicious Food",
   procedure:"Maggi with eggs and caremelized onions Boil water, add Maggi noodles and the tastemaker. Allow the Maggi to cook; in the meanwhile take out onion flakes. Put some olive oil in a pan and saute the onion flakes. You can also add garlic pieces. To caramelize onions, add a bit of sugar. Take out the yolk of two eggs and add it on the pan above onions and garlic. Serve Maggi in a plate, layer fried eggs on the top and then top it with the caramelized garlic and onions. ",
   chef_id:1,
   published: true
 )
-Recipe.create!(
+Recipe.where(name: "Aloo Paratha").first_or_create(
   name: "Aloo Paratha",
   summary: "Delicious Food",
   procedure:"1. first boil the potatoes and peel them. you can boil or steam the potatoes in a pressure cooker, steamer or electric cooker.

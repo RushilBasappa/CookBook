@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :require_permission, :except => [:index, :show]
   before_action :load_recipe, only: [:show, :edit, :update]
+  before_action :edit_recipe, only: [:edit, :update]
 
   def index
     @recipes = Recipe.published_recipes()
@@ -41,10 +42,17 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    byebug
     Recipe.find(params[:id]).destroy
     flash[:success] = "Recipe deleted"
     redirect_to recipes_path
+  end
+
+  def published
+    @recipe = Recipe.where(id: params[:id]).first
+    if @recipe.update("published"=>"true")
+      flash[:success] = "Recipe Published"
+    end
+    redirect_to recipe_path
   end
 
   private
@@ -58,5 +66,11 @@ class RecipesController < ApplicationController
 
   def load_recipe
     @recipe = Recipe.find(params[:id])
+  end
+
+  def edit_recipe
+    if !(current_chef == @recipe.chef)
+      redirect_to recipe_path(@recipe)
+    end
   end
 end

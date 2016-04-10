@@ -3,7 +3,7 @@
 = form_tag recipes_path, :method => 'get' do
   .container
     .row
-      .col-md-6.col-md-offset-3
+      .col-md-6.col-md-offset-1
         #custom-search-input
           .input-group.col-md-12
             = text_field_tag :search,
@@ -16,11 +16,13 @@
             %span.input-group-btn
               %button.btn.btn-info.btn-lg{:type => "submit"}
                 %i.glyphicon.glyphicon-search
+      .col-md-4.pull-right
+        = link_to "Write recipes",new_recipe_path,class:"btn btn-primary btn-lg"
 -@recipes.each do |recipe|
   .row
     .container-fluid
       .col-md-2
-        = gravatar_for(recipe.chef,120)
+        =link_to gravatar_for(recipe.chef,120),chef_profile_path(recipe.chef)
       .col-md-7.well
         %h4= link_to recipe.name.capitalize,recipe_path(recipe.id)
         %p= recipe.summary
@@ -31,4 +33,3 @@
         = image_tag(recipe.picture.url, size:"250x150",class: "gravatar") if recipe.picture?
     %hr/
 .col-md-2
-  = link_to "Write recipes",new_recipe_path,class:"btn btn-primary btn-lg"

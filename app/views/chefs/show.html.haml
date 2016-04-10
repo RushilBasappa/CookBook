@@ -8,10 +8,21 @@
     .col-md-9
       %h1 My Recipes
       %hr/
-
-      -@recipes.each do |recipe|
-        .well.row
-          .col-md-10
+      %h3 Published
+      -@recipes_published.each do |recipe|
+        .row
+          .col-md-10.col-md-offset-1.well
+            %h4=link_to recipe.name,recipe_path(recipe)
+            %p=recipe.summary
+            %small
+              =time_ago_in_words(recipe.created_at)
+              ago
+          .col-md-2
+            =image_tag(recipe.picture.url, size: "100x100", class:"gravatar") if recipe.picture?
+      %h3 Draft
+      -@recipes_draft.each do |recipe|
+        .row
+          .col-md-10.col-md-offset-1.well
             %h4=link_to recipe.name,recipe_path(recipe)
             %p=recipe.summary
             %small

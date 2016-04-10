@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :chefs,:controllers => {registrations: 'registrations'}
-  root 'welcome#home'
+  root 'sessions#signup'
 
   get '/chefs/:id', to: 'chefs#show', as: :chef_profile
+  get '/chefs', to: 'chefs#index', as: :chefs
 
   get '/recipes', to: 'recipes#index', as: :recipes
   post '/recipes', to: 'recipes#create'
@@ -14,4 +15,6 @@ Rails.application.routes.draw do
 
   post '/recipes/:recipe_id/reviews', to: 'reviews#create', as: :recipe_reviews
   get '/recipes/:recipe_id/reviews', to: 'reviews#index', as: :reviews
+
+  get '/recipes/:id/publish', to: 'recipes#published', as: :publish_recipe
 end

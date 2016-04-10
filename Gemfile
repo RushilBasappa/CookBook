@@ -17,6 +17,7 @@ gem 'mini_magick', '4.4.0'
 gem "erb2haml", :group => :development
 gem 'haml-rails', '~> 0.9.0'
 gem "jquery-ui-rails"
+gem 'tabs_on_rails', '~> 2.2'
 
 group :development, :test do
   gem 'byebug'

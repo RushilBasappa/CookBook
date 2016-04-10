@@ -1,8 +1,58 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body{
-  margin-top: 50px;
+html,body{
+  height:100%;
+}
+
+
+#home{
+  background: url(/assets/back.jpg) 50% fixed;
+  min-height: 673px;
+  z-index: -2;
+  position: absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  width:100%;
+}
+
+.navbar-transparent{
+  height:65px;
+}
+
+#overlay{
+  background:rgba(0,0,0,0.6);
+  min-height: 673px;
+  z-index: -1;
+  position: absolute;
+  top:0;
+  left:0;
+  bottom: 0;
+  width:100%;
+}
+
+.navbar-right {
+  li{
+    padding:6px;
+  }
+  a{
+    padding:21px;
+  }
+}
+
+.jumbotron{
+  margin-top:40px;
+  background-color:transparent;
+  h2{
+    color:white;
+  }
+  h4{
+    width:97%;
+    color:white;
+    text-align: right;
+    margin-top:0;
+  }
 }
 
 h1,.center{
@@ -10,9 +60,9 @@ h1,.center{
 }
 #logo{
   float:left;
-  font-size:30px;
+  font-size:38px;
   text-decoration: none;
-  color:grey;
+  color:white;
   font-weight:bold;
   padding:3px 0;
   &:hover{
@@ -62,3 +112,18 @@ hr{
 }
 
 .ui-helper-hidden-accessible { display:none; }
+
+.dropdown-toggle
+{
+  padding:0 !important;
+  img{
+    border-radius:100px;
+  }
+}
+
+.pro_border{
+  border: thin solid black;
+  border-radius:10px;
+  padding:15px;
+}
+
