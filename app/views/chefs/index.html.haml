@@ -2,9 +2,9 @@
 %hr/
 -@chefs.each do |chef|
   .col-md-10.center.pro_border
-      =link_to chef_profile_path(chef)  do
-        =gravatar_for(chef,150)
-        %h4=chef.chefname.capitalize
-        %h5
-          Published recipes:
-          =chef.recipes.where(published: true).count
+    =link_to chef_profile_path(chef)  do
+      =gravatar_for(chef,150)
+      %h4=chef.chefname.capitalize
+      %h5
+        Published recipes:
+        =chef.recipes.where(published: true).count
